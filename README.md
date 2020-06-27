@@ -1,4 +1,4 @@
-# `evs-cassandra`
+`# `evs-cassandra`
 
 Eventstream analytic for Cyberprobe event streams.  Subscribes to Pulsar
 for Cyberprobe events and produces events which are stored in a table on
@@ -48,7 +48,7 @@ The following environment variables are used to configure:
 
 | Variable | Purpose | Default |
 |----------|---------|---------|
-| `INPUT` | Specifies the Pulsar topic to subscribe to.  This is just the topic part of the URL e.g. `cyberprobe`. | `ioc` |
+| `INPUT` | Specifies the Pulsar topic to subscribe to.  This is just the topic part of the URL e.g. `cyberprobe`. | `withioc` |
 | `METRICS_PORT` | Specifies the port number to serve Prometheus metrics on.  If not set, metrics will not be served. The container has a default setting of 8088. | `8088` |
 | `CASSANDRA_CLUSTER` | Specifies a set of contact points used to discover the Cassandra cluster topology.  Should be a comma-separated list.  Use a single hostname if the cluster is a single node. | `localhost` |
 
