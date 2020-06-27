@@ -13,7 +13,6 @@ a Pulsar service to be running, along with a Cassandra service.
   docker run -d \
       -e PULSAR_BROKER=pulsar://<PULSAR-HOST>:6650 \
       -e CASSANDRA_CLUSTER=<CASSANDRA-HOST1>,... \
-      -e METRICS_PORT=8088 \
       -p 8088:8088 \
       docker.io/cybermaggedon/evs-cassandra:<VERSION>
 ```
