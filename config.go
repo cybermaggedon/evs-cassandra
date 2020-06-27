@@ -14,7 +14,7 @@ type CassandraConfig struct {
 func NewCassandraConfig() *CassandraConfig {
 
 	c := &CassandraConfig{
-		Config:  evs.NewConfig("evs-cassandra", "ioc", nil),
+		Config:  evs.NewConfig("evs-cassandra", "withioc", nil),
 		hosts: []string{"localhost"},
 	}
 
