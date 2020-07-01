@@ -18,7 +18,7 @@ type Loader struct {
 	insert  *gocql.Query
 
 	event_latency prometheus.Summary
-	loaded        prometheus.Summary
+	loaded        prometheus.Counter
 }
 
 func (l *Loader) InitMetrics() {
@@ -31,8 +31,8 @@ func (l *Loader) InitMetrics() {
 		})
 	prometheus.MustRegister(l.event_latency)
 
-	l.loaded = prometheus.NewSummary(
-		prometheus.SummaryOpts{
+	l.loaded = prometheus.NewCounter(
+		prometheus.CounterOpts{
 			Name: "cassandra_loaded",
 			Help: "Numer of Cassandra rows loaded",
 		})
@@ -88,6 +88,7 @@ func (l *Loader) Load(ob *Event) error {
 	}
 
 	ts := time.Now()
+	l.loaded.Inc()
 	go l.recordLatency(ts, ob)
 
 	return nil
