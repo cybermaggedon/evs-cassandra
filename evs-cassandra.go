@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -27,7 +26,7 @@ func NewCassandra(cc *CassandraConfig) *Cassandra {
 	}
 
 	var err error
-	c.EventSubscriber, err = evs.NewEventSubscriber(c.Name, c.Input, c)
+	c.EventSubscriber, err = evs.NewEventSubscriber(c, c)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -10,57 +9,57 @@ import (
 )
 
 type DnsQuery struct {
-	Name string   `cql:"name"`
-	Type string `cql:"type"`
+	Name  string `cql:"name"`
+	Type  string `cql:"type"`
 	Class string `cql:"cls"`
 }
 
 type DnsAnswer struct {
-	Name string  `cql:"name"`
-	Type string  `cql:"type"`
-	Class string  `cql:"cls"`
-	Address net.IP  `cql:"address"`
+	Name    string `cql:"name"`
+	Type    string `cql:"type"`
+	Class   string `cql:"cls"`
+	Address net.IP `cql:"address"`
 }
 
 type HttpRequest struct {
-	Method string  `cql:"method"`
+	Method string `cql:"method"`
 }
 
 type HttpResponse struct {
-	Status string  `cql:"status"`
-	Code int32  `cql:"code"`
+	Status string `cql:"status"`
+	Code   int32  `cql:"code"`
 }
 
 type Indicator struct {
-	Id string `cql:"id"`
-	Type string `cql:"type"`
-	Value string `cql:"value"`
-	Category string `cql:"category"`
-	Source string `cql:"source"`
-	Author string `cql:"author"`
-	Description string `cql:"description"`
+	Id          string  `cql:"id"`
+	Type        string  `cql:"type"`
+	Value       string  `cql:"value"`
+	Category    string  `cql:"category"`
+	Source      string  `cql:"source"`
+	Author      string  `cql:"author"`
+	Description string  `cql:"description"`
 	Probability float32 `cql:"probability"`
 }
 
 type Event struct {
-	Id string
-	Time time.Time
-	Action string
-	Device string
-	Network string
-	SrcIp net.IP
-	DestIp net.IP
-	SrcPort int
-	DestPort int
-	Protocol string
-	Url string
-	DnsType string
-	DnsQuery []DnsQuery
-	DnsAnswer []DnsAnswer
-	HttpRequest HttpRequest
+	Id           string
+	Time         time.Time
+	Action       string
+	Device       string
+	Network      string
+	SrcIp        net.IP
+	DestIp       net.IP
+	SrcPort      int
+	DestPort     int
+	Protocol     string
+	Url          string
+	DnsType      string
+	DnsQuery     []DnsQuery
+	DnsAnswer    []DnsAnswer
+	HttpRequest  HttpRequest
 	HttpResponse HttpResponse
-	Header map[string]string
-	Indicator []Indicator
+	Header       map[string]string
+	Indicator    []Indicator
 }
 
 func Convert(ev *pb.Event) *Event {
@@ -88,8 +87,8 @@ func Convert(ev *pb.Event) *Event {
 
 			for _, val := range msg.Query {
 				q := DnsQuery{
-					Name: val.Name,
-					Type: val.Type,
+					Name:  val.Name,
+					Type:  val.Type,
 					Class: val.Class,
 				}
 				qs = append(qs, q)
@@ -100,9 +99,9 @@ func Convert(ev *pb.Event) *Event {
 		if len(msg.Answer) > 0 {
 			as := []DnsAnswer{}
 			for _, val := range msg.Answer {
-				a := DnsAnswer {
-					Name: val.Name,
-					Type: val.Type,
+				a := DnsAnswer{
+					Name:  val.Name,
+					Type:  val.Type,
 					Class: val.Class,
 				}
 				if val.Address != nil {
@@ -137,12 +136,12 @@ func Convert(ev *pb.Event) *Event {
 		is := []Indicator{}
 		for _, val := range ev.Indicators {
 			i := Indicator{
-				Id: val.Id,
-				Type: val.Type,
-				Value: val.Value,
-				Category: val.Category,
-				Source: val.Source,
-				Author: val.Author,
+				Id:          val.Id,
+				Type:        val.Type,
+				Value:       val.Value,
+				Category:    val.Category,
+				Source:      val.Source,
+				Author:      val.Author,
 				Description: val.Description,
 				Probability: val.Probability,
 			}

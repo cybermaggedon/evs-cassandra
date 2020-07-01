@@ -15,11 +15,10 @@ type Loader struct {
 	CassandraConfig
 
 	session *gocql.Session
-	insert *gocql.Query
+	insert  *gocql.Query
 
 	event_latency prometheus.Summary
 	loaded        prometheus.Summary
-
 }
 
 func (l *Loader) InitMetrics() {
@@ -90,7 +89,6 @@ func (l *Loader) Load(ob *Event) error {
 
 	ts := time.Now()
 	go l.recordLatency(ts, ob)
-
 
 	return nil
 

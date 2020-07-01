@@ -14,8 +14,8 @@ type CassandraConfig struct {
 func NewCassandraConfig() *CassandraConfig {
 
 	c := &CassandraConfig{
-		Config:  evs.NewConfig("evs-cassandra", "withioc", nil),
-		hosts: []string{"localhost"},
+		Config: evs.NewConfig("evs-cassandra", "withioc", nil),
+		hosts:  []string{"localhost"},
 	}
 
 	if val, ok := os.LookupEnv("CASSANDRA_CLUSTER"); ok {
