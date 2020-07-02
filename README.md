@@ -1,4 +1,4 @@
-`# `evs-cassandra`
+# `evs-cassandra`
 
 Eventstream analytic for Cyberprobe event streams.  Subscribes to Pulsar
 for Cyberprobe events and produces events which are stored in a table on
